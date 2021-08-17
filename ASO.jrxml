@@ -1,0 +1,1205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ASO" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fca5319-a86d-476a-9dab-8c951807aad2">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAso" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     aso.`tipoExame` AS aso_tipoExame,
+     aso.`fisCalor` AS aso_fisCalor,
+     aso.`fisFrio` AS aso_fisFrio,
+     aso.`fisRuido` AS aso_fisRuido,
+     aso.`fisUmid` AS aso_fisUmid,
+     aso.`fisRad` AS aso_fisRad,
+     aso.`fisOutros` AS aso_fisOutros,
+     aso.`quiGases` AS aso_quiGases,
+     aso.`quiPoeiras` AS aso_quiPoeiras,
+     aso.`quiTintas` AS aso_quiTintas,
+     aso.`quiSolventes` AS aso_quiSolventes,
+     aso.`quiProd` AS aso_quiProd,
+     aso.`quiOutros` AS aso_quiOutros,
+     aso.`bioMicro` AS aso_bioMicro,
+     aso.`bioOutros` AS aso_bioOutros,
+     aso.`ergoMovPeso` AS aso_ergoMovPeso,
+     aso.`ergoPost` AS aso_ergoPost,
+     aso.`ergoEsf` AS aso_ergoEsf,
+     aso.`ergoTrabSentado` AS aso_ergoTrabSentado,
+     aso.`ergoTrabPe` AS aso_ergoTrabPe,
+     aso.`ergoMovRep` AS aso_ergoMovRep,
+     aso.`ergoOutros` AS aso_ergoOutros,
+     aso.`ausenciaRisc` AS aso_ausenciaRisc,
+     aso.`exCli` AS aso_exCli,
+     aso.`exAud` AS aso_exAud,
+     aso.`exEspi` AS aso_exEspi,
+     aso.`exECG` AS aso_exECG,
+     aso.`exHemo` AS aso_exHemo,
+     aso.`exChagas` AS aso_exChagas,
+     aso.`exGlice` AS aso_exGlice,
+     aso.`exRX` AS aso_exRX,
+     aso.`exAcui` AS aso_exAcui,
+     aso.`exCopropar` AS aso_exCopropar,
+     aso.`exCoprocult` AS aso_exCoprocult,
+     aso.`exVDRL` AS aso_exVDRL,
+     aso.`exOutras1` AS aso_exOutras1,
+     aso.`exOutras2` AS aso_exOutras2,
+     aso.`exOutras3` AS aso_exOutras3,
+     aso.`exOutras1Texto` AS aso_exOutras1Texto,
+     aso.`exOutras2Texto` AS aso_exOutras2Texto,
+     aso.`exOutras3Texto` AS aso_exOutras3Texto,
+     aso.`conclusao` AS aso_conclusao,
+     aso.`restricoes` AS aso_restricoes,
+     empresa.`nome` AS empresa_nome,
+     paciente.`Nome` AS paciente_Nome,
+     paciente.`dataNasc` AS paciente_dataNasc,
+     paciente.`RG` AS paciente_RG,
+     paciente.`Cargo` AS paciente_Cargo,
+aso.`data` AS 'Data do Exame',
+aso.`idAso` AS 'Número da ASO'
+FROM
+     `empresa` empresa INNER JOIN `aso` aso ON empresa.`idEmpresa` = aso.`id_Empresa`
+     INNER JOIN `paciente` paciente ON empresa.`idEmpresa` = paciente.`id_empresa`
+     AND paciente.`idPaciente` = aso.`id_Paciente`
+WHERE aso.`idAso` = $P{idAso}]]>
+	</queryString>
+	<field name="aso_tipoExame" class="java.lang.String"/>
+	<field name="aso_fisCalor" class="java.lang.Integer"/>
+	<field name="aso_fisFrio" class="java.lang.Integer"/>
+	<field name="aso_fisRuido" class="java.lang.Integer"/>
+	<field name="aso_fisUmid" class="java.lang.Integer"/>
+	<field name="aso_fisRad" class="java.lang.Integer"/>
+	<field name="aso_fisOutros" class="java.lang.Integer"/>
+	<field name="aso_quiGases" class="java.lang.Integer"/>
+	<field name="aso_quiPoeiras" class="java.lang.Integer"/>
+	<field name="aso_quiTintas" class="java.lang.Integer"/>
+	<field name="aso_quiSolventes" class="java.lang.Integer"/>
+	<field name="aso_quiProd" class="java.lang.Integer"/>
+	<field name="aso_quiOutros" class="java.lang.Integer"/>
+	<field name="aso_bioMicro" class="java.lang.Integer"/>
+	<field name="aso_bioOutros" class="java.lang.Integer"/>
+	<field name="aso_ergoMovPeso" class="java.lang.Integer"/>
+	<field name="aso_ergoPost" class="java.lang.Integer"/>
+	<field name="aso_ergoEsf" class="java.lang.Integer"/>
+	<field name="aso_ergoTrabSentado" class="java.lang.Integer"/>
+	<field name="aso_ergoTrabPe" class="java.lang.Integer"/>
+	<field name="aso_ergoMovRep" class="java.lang.Integer"/>
+	<field name="aso_ergoOutros" class="java.lang.Integer"/>
+	<field name="aso_ausenciaRisc" class="java.lang.Integer"/>
+	<field name="aso_exCli" class="java.sql.Date"/>
+	<field name="aso_exAud" class="java.sql.Date"/>
+	<field name="aso_exEspi" class="java.sql.Date"/>
+	<field name="aso_exECG" class="java.sql.Date"/>
+	<field name="aso_exHemo" class="java.sql.Date"/>
+	<field name="aso_exChagas" class="java.sql.Date"/>
+	<field name="aso_exGlice" class="java.sql.Date"/>
+	<field name="aso_exRX" class="java.sql.Date"/>
+	<field name="aso_exAcui" class="java.sql.Date"/>
+	<field name="aso_exCopropar" class="java.sql.Date"/>
+	<field name="aso_exCoprocult" class="java.sql.Date"/>
+	<field name="aso_exVDRL" class="java.sql.Date"/>
+	<field name="aso_exOutras1" class="java.sql.Date"/>
+	<field name="aso_exOutras2" class="java.sql.Date"/>
+	<field name="aso_exOutras3" class="java.sql.Date"/>
+	<field name="aso_exOutras1Texto" class="java.lang.String"/>
+	<field name="aso_exOutras2Texto" class="java.lang.String"/>
+	<field name="aso_exOutras3Texto" class="java.lang.String"/>
+	<field name="aso_conclusao" class="java.lang.String"/>
+	<field name="aso_restricoes" class="java.lang.String"/>
+	<field name="empresa_nome" class="java.lang.String"/>
+	<field name="paciente_Nome" class="java.lang.String"/>
+	<field name="paciente_dataNasc" class="java.lang.String"/>
+	<field name="paciente_RG" class="java.lang.String"/>
+	<field name="paciente_Cargo" class="java.lang.String"/>
+	<field name="Data do Exame" class="java.sql.Date"/>
+	<field name="Número da ASO" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="802">
+			<rectangle>
+				<reportElement x="0" y="603" width="555" height="136" uuid="510683d0-db46-4503-8b2c-a7a95c772573"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="739" width="555" height="31" uuid="d9fc95a8-e203-4cfd-bd9b-5d9be017a542"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="719" width="318" height="20" uuid="1984cbff-2c45-4038-9903-203c90fe9597"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="277" y="770" width="278" height="32" uuid="368817cb-4d47-434b-8418-6dd8b9da8fcf"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="770" width="277" height="32" uuid="265a93fc-55d5-4179-b5b9-c31e05412a84"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="559" width="555" height="22" uuid="7dc6c62f-5826-460c-897d-71792ff8ca2a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="19" y="564" width="11" height="15" uuid="de21ba08-e1b6-449e-8987-a7fe53000111"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="479" width="555" height="80" uuid="62cc5738-a0db-44ed-b694-b092668efed3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="446" width="555" height="33" uuid="7e6b0d95-ba84-44c0-9443-a19600cd5d5f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="387" width="555" height="60" uuid="9ab856be-d7f1-4ebc-aec2-4cba152dd75e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="327" width="555" height="60" uuid="81b92a2b-da7c-469a-9b5b-1a500961700b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="307" width="555" height="20" uuid="3b7b1ee6-e47b-4d44-bb9f-d3195e01a022"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="447" y="335" width="11" height="15" uuid="d2cc9a45-b1c6-4794-be39-0f96409483da"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="448" y="416" width="11" height="15" uuid="9441e696-642a-4d0a-8919-69656756faf9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="447" y="486" width="11" height="15" uuid="07b35fae-9c35-4eb6-ba5b-e948aa6084c8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="101" y="511" width="11" height="15" uuid="1723cad9-c981-4144-be5d-9458dda629e3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="101" y="539" width="11" height="15" uuid="2d439500-2f8f-4563-ad9e-7d6bc3623d8a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="247" y="416" width="11" height="15" uuid="211cd8c0-294e-4d60-a224-852cc494b266"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="101" y="486" width="11" height="15" uuid="991ee903-dbe1-4676-beb7-4a5b145446cd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="247" y="335" width="11" height="15" uuid="a4b3c219-ca1c-4a62-ae8e-3d70389e582c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="99" y="416" width="11" height="15" uuid="6e3b1ae0-c46c-415b-a816-b662f569ea75"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="99" y="360" width="11" height="15" uuid="f115b53a-fa89-4eb3-b509-a8f03141a45f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="220" width="555" height="87" uuid="58a61046-c4ad-4ada-beb6-7f433700cdc8"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="88" width="555" height="132" uuid="b37465bb-a6ae-4264-a3bc-560ef4d01133"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="160" width="18" height="19" uuid="b7c74486-d473-4c8e-84a9-db837abce5fe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="101" width="18" height="19" uuid="28c93e44-348d-4894-a11f-0bb6106f27d9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="131" width="18" height="19" uuid="7ba106ab-a036-4f94-a8bd-7185d29a7f31"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="317" y="188" width="18" height="19" uuid="dd87c7ce-f8f7-42fc-aaf2-502ebf0e61a0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="19" y="188" width="18" height="19" uuid="a0deeae4-72f7-44d1-8eac-dfd64cd6776a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="19" y="160" width="18" height="19" uuid="21e37d19-65fd-41b2-b392-72b323cc693c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="19" y="131" width="18" height="19" uuid="417ce2b4-56d0-46fe-9dd5-2f3583ff82f5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="68" width="555" height="20" uuid="003d6d6f-e6e6-48e7-87c7-30a9f47b848a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="68" uuid="f024bec8-e239-46f8-bbda-4e2cb189e65a"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="68" width="71" height="20" uuid="38b31733-a682-4ffe-a2fe-1f43fa241c08"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="68" width="464" height="20" uuid="cc6e3b03-2aea-4fd2-968a-1d6934ca2a38"/>
+				<textElement>
+					<font fontName="Arial" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nome}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="19" y="101" width="18" height="19" uuid="01c4bd36-5515-4747-96e5-4a8e89280820"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="20" y="104" width="17" height="16" uuid="94240372-3dc9-471e-b916-2db77d8e0995">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Admissional" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="0" width="228" height="20" uuid="dd32dfa0-fc67-4e15-a238-98af5a070d24"/>
+				<textElement>
+					<font fontName="Arial" size="14" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Dr. Roberto Ribeiro de Carvalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="72" y="20" width="117" height="16" uuid="fa5a186e-e780-474e-ab73-b292f0fdb996"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Médico do Trabalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="91" y="36" width="69" height="16" uuid="dc5000be-08c9-41f5-98fe-2c7a14b225d2"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[CRM 63783]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="52" width="275" height="16" uuid="999c1b14-e296-4ce4-bcea-9f7bf05eb6ab"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Rua Nove de Julho, 994 - Centro - Iacanga - SP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="295" y="20" width="246" height="20" uuid="adaa37d2-0ebb-4ccb-90d8-993e16fcea16"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Atestado de Saúde Ocupacional]]></text>
+			</staticText>
+			<line>
+				<reportElement x="248" y="0" width="69" height="68" uuid="81596761-487a-483b-9180-e1085cf60b8b"/>
+			</line>
+			<staticText>
+				<reportElement x="20" y="134" width="17" height="16" uuid="7911d2a1-cd8e-4bd6-aa35-d1ce14557d6b">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Demissional" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="163" width="17" height="16" uuid="e2df5374-4727-4f33-8827-d27bdf087bf4">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Periódico" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="191" width="17" height="16" uuid="968bbc45-5e47-49c3-9c3f-3bcfbd263c00">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Mudança de cargo/função" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="104" width="17" height="16" uuid="36eaa1c5-6491-4254-9186-dc82da0d32bc">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Acidente do Trabalho" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="191" width="17" height="16" uuid="f6cbd9b2-230e-470e-bb68-d02cbcd473af">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Parto" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="318" y="163" width="17" height="16" uuid="96efbfd6-1de8-48a5-855c-9a2acbc72762">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Doença/Acidente não Ocupacional" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="134" width="17" height="16" uuid="de7b7e1a-8877-4f25-aab4-33d6f8780699">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Doença Ocupacional" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="159" y="131" width="18" height="19" uuid="66806add-3f65-40c6-afcf-2b61a9b9d1c5"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="160" y="134" width="17" height="16" uuid="9bb29038-b6ee-44da-bfdb-1ba13fb1a511">
+					<printWhenExpression><![CDATA[$F{aso_tipoExame}.equals( "Retorno ao Trabalho" )]]></printWhenExpression>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="13"/>
+				</textElement>
+				<text><![CDATA[ X]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="106" width="100" height="14" uuid="e5a511f3-384f-4799-a47d-8bc7e46308c3"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Admissional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="136" width="100" height="14" uuid="33dd7fbf-c06e-4f46-bf63-d7a154797120"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Demissional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="165" width="100" height="14" uuid="077c4033-6a5c-4315-93c9-2626a18e983b"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Periódico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="48" y="193" width="111" height="14" uuid="9b277c45-13dc-44b3-8b4e-30053293510d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Mudança de Função]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="136" width="138" height="14" uuid="754b3cb1-30ca-4009-9c87-15eaa6864539"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Doença Ocupacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="193" width="149" height="14" uuid="21e5e198-8a2a-423c-a016-d2e42c667a77"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Parto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="106" width="138" height="14" uuid="24cc7c9d-f404-4dad-b6a5-ae524ac69903"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Acidente do Trabalho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="165" width="204" height="14" uuid="9dcb8012-073b-422a-8bbe-07811eff9d03"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Doença / Acidente não Ocupacional]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="136" width="116" height="14" uuid="ef884fc7-1daa-4c88-9a38-6f7183e5032c"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Retorno ao Trabalho]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="91" y="232" width="189" height="14" uuid="953669b5-3558-48ca-9621-05afdb8c6779"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_Nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="403" y="257" width="152" height="14" uuid="0eeebef3-942f-46ad-b74e-aea3349698ec"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_dataNasc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="257" width="170" height="14" uuid="2bea1847-1fd8-426e-9b4a-a339492a9ff6"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_RG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="72" y="283" width="208" height="14" uuid="28c3c165-1dc6-4f0a-9bf7-242f27b1c928"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente_Cargo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="335" y="283" width="220" height="14" uuid="1d78f817-7fbe-482c-86ca-636abf7a5e48"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{empresa_nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="283" width="55" height="14" uuid="46aa2d08-b10a-4945-ab5a-ac66a7779fb3"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Empresa:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="232" width="71" height="14" uuid="3a3ddbc6-484d-4ac9-afa2-de8fe8e86caf"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="257" width="91" height="14" uuid="cf2d9add-18e0-4225-92b2-880c70b4845a"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Portador(a) RG:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="257" width="123" height="14" uuid="6047adaf-0b51-4fe7-9aeb-07e8d5e72005"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Data de Nascimento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="283" width="53" height="14" uuid="993f6a05-30cd-45fd-ae0f-0ea6f4ac8e2d"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Função:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="360" width="11" height="15" uuid="764d6d3d-6581-465a-a670-e98e7dbb5649">
+					<printWhenExpression><![CDATA[$F{aso_fisUmid} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="307" width="481" height="20" uuid="5aa2a0ab-f85e-455f-b973-3d01dcd4dcad"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Foi clinicamente examinado, estando exposto aos riscos (agentes) ocupacionais:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="350" width="78" height="25" uuid="578de88a-6f89-4c7d-af5d-c4724ba65013"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Físicos:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="99" y="335" width="11" height="15" uuid="99bf91d6-5d34-40ae-bfec-d323da2abb49"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="99" y="335" width="11" height="15" uuid="cb6b137a-c5a0-43d5-ad70-d5b4ab151991">
+					<printWhenExpression><![CDATA[$F{aso_fisCalor} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="247" y="360" width="11" height="15" uuid="2a6c4f70-07cf-48c3-962a-2b96b439d450"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="247" y="335" width="11" height="15" uuid="197f66ea-fc31-4280-89f7-260207cc812f">
+					<printWhenExpression><![CDATA[$F{aso_fisFrio} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="247" y="360" width="11" height="15" uuid="5e3f1ec3-64e5-483b-8f94-7e6c3759a977">
+					<printWhenExpression><![CDATA[$F{aso_fisRad} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="454" width="128" height="20" uuid="88a91c62-c392-4d0c-9454-54b12d80a389"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Microorganismos em geral]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="448" y="360" width="11" height="15" uuid="0424091a-d40e-4810-82ba-d558cbf3e982"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="447" y="335" width="11" height="15" uuid="44131ee0-e437-4de5-bc93-6820673dd6a2">
+					<printWhenExpression><![CDATA[$F{aso_fisRuido} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="448" y="360" width="11" height="15" uuid="ca3d46cb-a965-4b84-af74-c94d05431d6f">
+					<printWhenExpression><![CDATA[$F{aso_fisOutros} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="448" y="391" width="11" height="15" uuid="4902fd03-421d-47a7-918e-28593046bc57"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="447" y="416" width="11" height="15" uuid="e434bf8f-bb7f-4218-af2f-9173d313ddbf">
+					<printWhenExpression><![CDATA[$F{aso_quiOutros} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="416" width="11" height="15" uuid="a2e0f1bf-010e-4f67-a6be-8da67a5ac889">
+					<printWhenExpression><![CDATA[$F{aso_quiSolventes} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="247" y="391" width="11" height="15" uuid="eba35e8b-915d-40c0-93d8-04f95331afb1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="247" y="416" width="11" height="15" uuid="3ce40165-09d6-40eb-bcc3-d7c935077cee">
+					<printWhenExpression><![CDATA[$F{aso_quiProd} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="99" y="391" width="11" height="15" uuid="eb0192d2-5f21-4b7b-950b-64f9f7c05ebb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="247" y="391" width="11" height="15" uuid="09388906-07a8-4b4b-8c4e-2de005bc9945">
+					<printWhenExpression><![CDATA[$F{aso_quiPoeiras} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="99" y="391" width="11" height="15" uuid="868849ca-f4d2-4d4b-a869-38a904c91c77">
+					<printWhenExpression><![CDATA[$F{aso_quiGases} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="406" width="78" height="25" uuid="a0d7fd2f-2407-4f94-9956-335e029fc3dd"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Qímicos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="391" width="11" height="15" uuid="953f1286-313b-425c-a51b-1f53ea49010d">
+					<printWhenExpression><![CDATA[$F{aso_quiTintas} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="454" width="78" height="25" uuid="c2ca5327-22b0-460a-806a-428daeb6f400"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Biológicos:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="248" y="454" width="11" height="15" uuid="e53768e0-5ee7-4417-aa6f-d9c50bd1dd57"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="100" y="454" width="11" height="15" uuid="71047aa5-2667-41dc-ab7e-be49350206a6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="248" y="454" width="11" height="15" uuid="b98f2c53-838b-476e-b71d-404d1e8733ca">
+					<printWhenExpression><![CDATA[$F{aso_bioOutros} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="454" width="11" height="15" uuid="37e452de-4800-4ac4-b1a4-101f51f5e90c">
+					<printWhenExpression><![CDATA[$F{aso_bioMicro} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="249" y="511" width="11" height="15" uuid="4c0c07b2-416f-4d32-9ecb-19d98390d1df"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="249" y="511" width="11" height="15" uuid="23c6a086-960b-43bb-8b39-173369a53617">
+					<printWhenExpression><![CDATA[$F{aso_ergoTrabSentado} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="249" y="486" width="11" height="15" uuid="b88225c0-c3f5-4bea-bfe8-090b1141bedc"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="101" y="486" width="11" height="15" uuid="2ea4780b-6fb4-4325-b285-5b0e3989436d">
+					<printWhenExpression><![CDATA[$F{aso_ergoMovPeso} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="447" y="486" width="11" height="15" uuid="6aad9949-fe07-4bbf-8c75-382e059b434a">
+					<printWhenExpression><![CDATA[$F{aso_ergoOutros} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="511" width="11" height="15" uuid="db6a006d-17bc-42b4-81ac-37a05cee1a1f">
+					<printWhenExpression><![CDATA[$F{aso_ergoEsf} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="486" width="11" height="15" uuid="55368df5-fe18-4639-8898-d66ba74eeeb6">
+					<printWhenExpression><![CDATA[$F{aso_ergoPost} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="511" width="78" height="25" uuid="d3d110f5-1f68-4107-87da-c277c24a3af2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Egonômicos:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="249" y="539" width="11" height="15" uuid="4fdd0292-3534-43c9-8336-036dd1302c84"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="249" y="539" width="11" height="15" uuid="6af70237-f620-451c-85da-fc23cbfda078">
+					<printWhenExpression><![CDATA[$F{aso_ergoTrabPe} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="101" y="539" width="11" height="15" uuid="f5024bad-3e3c-49b2-a890-bfa09c9a828c">
+					<printWhenExpression><![CDATA[$F{aso_ergoMovRep} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="486" width="128" height="20" uuid="7e51aa2c-880f-44d7-ab78-2b497933f8cf"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Movimentação de Pesos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="486" width="142" height="20" uuid="9debd558-0cf0-4102-a0c4-870f26daaff1"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Postura Inadequada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="511" width="193" height="20" uuid="f90a30c6-b71b-47ee-a808-41328419309d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Trabalho predominantemente sentado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="511" width="128" height="20" uuid="54878b27-1c6e-4819-a5bc-382fce8f0139"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Esforço Físico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="539" width="193" height="20" uuid="e112eefd-2003-48fa-af7f-d010c83a1082"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Trabalho predominantemente em pé]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="539" width="128" height="20" uuid="f338c9a0-856d-45ca-8d0c-d53e74c657ef"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Movimentos Repetitivos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="335" width="142" height="20" uuid="219d7016-d7de-43bd-b718-a9b5e3e5971d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Frio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="360" width="142" height="20" uuid="5cd908a1-ad74-4316-a0d4-d9ed3b78d967"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Radiação não-ionizante]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="335" width="128" height="20" uuid="bc1cd222-5033-4a07-905d-d36e823904c8"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Calor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="360" width="128" height="20" uuid="3fe4d721-451d-4fec-b38e-812c8dd4c090"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Umidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="391" width="142" height="20" uuid="6113220c-44b0-40d6-ab0d-2a37582edea5"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Poeiras]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="416" width="177" height="20" uuid="e2fe8796-aaac-4318-9165-838bdbee69c5"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Produtos de Limpeza Uso Doméstico]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="391" width="128" height="20" uuid="952d08f5-b1cd-4ec9-9ae4-227c2090bb37"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Gases]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="416" width="128" height="20" uuid="6cee8dc5-cb18-45b7-8249-c90fa1ce7ee6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Solventes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="391" width="92" height="20" uuid="c1917e10-9ec2-4da1-af0f-2e646805ba0b"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Tintas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="416" width="92" height="20" uuid="66b54e33-7f04-4ae3-88b0-e869b8288f43"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Outros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="335" width="92" height="20" uuid="6747dd53-3918-46bf-b216-41cfd74a63f9"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Ruído]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="360" width="92" height="20" uuid="14a8a66c-4cec-4c5a-a353-2e666c271145"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Outros:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="461" y="486" width="92" height="20" uuid="5c7b203b-73d4-4c86-bc7c-60d34cb43f66"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Outros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="454" width="128" height="20" uuid="291b8d40-bd8e-4af6-a004-a781fc4153c6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Outros]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="564" width="162" height="15" uuid="42cdaab6-4549-4e09-9237-d8e77b064a5d"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Ausência de Riscos Ocupacionais]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="564" width="11" height="15" uuid="4e597ba4-048b-4553-8bd2-995f02b59706">
+					<printWhenExpression><![CDATA[$F{aso_ausenciaRisc} == 1]]></printWhenExpression>
+				</reportElement>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[ x]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="-1" y="770" width="278" height="20" uuid="fc1e36be-6d86-43df-a943-03bb580c5355"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recebi a 2ª via - Assinatura do Funcionário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="280" y="770" width="278" height="20" uuid="ae3dff28-e657-4ab9-825a-a8b40d6b2426"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Médico Examinador]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="581" width="555" height="22" uuid="c56d2a4e-b2d5-4fba-a16e-8d2036b041f4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="19" y="585" width="481" height="20" uuid="e6ac286b-b351-4cd1-9fb7-023aee4ff22f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Realizou o(s) seguinte(s) exame(s) complementar(es):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="603" width="100" height="17" uuid="2c46b7c1-15c7-43fc-829e-a10e202ad746"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Avaliação Clínica:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="603" width="100" height="17" uuid="eab86594-bd1c-4546-9da4-5eb9f98d4fba"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exCli}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="620" width="100" height="17" uuid="a2cf30a9-fdf5-49bc-8ef5-53d63332766a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Audiometria:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="620" width="100" height="17" uuid="bcbd21a3-ff86-4a6f-b295-ce171c848a5e"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exAud}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="637" width="100" height="17" uuid="eb01e2f6-ebc9-4a47-a0c3-f62315ff9442"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Espirometria:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="637" width="100" height="17" uuid="53686890-37a6-4ae4-86ca-ecaaa3012f60"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exEspi}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="654" width="100" height="17" uuid="7c66ec69-b9ff-4958-b8c9-7be429f378ba"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[ECG:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="654" width="100" height="17" uuid="1bf65dee-a546-4c1c-8ed3-d3ac6b3b749c"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exECG}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="671" width="100" height="17" uuid="2b655d78-acbc-4d1f-a7f2-d9d3de2c4d0f"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Hemograma:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="671" width="100" height="17" uuid="0503cf94-165f-4473-8c41-2d5a9784b87e"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exHemo}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="688" width="100" height="17" uuid="fed64939-bf58-4c7b-bf6f-e3b9565f4720"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Chagas:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="688" width="100" height="17" uuid="cab29241-fdaf-4138-a069-4b93da99095a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exChagas}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="705" width="100" height="17" uuid="145bb07f-faff-476c-8149-7405e56e42c2"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Glicemia:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="119" y="705" width="100" height="17" uuid="58f2df4c-4393-4f4f-8a66-09063e898864"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exGlice}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="603" width="100" height="17" uuid="7504c3c1-699d-41cf-8438-c25bc508865a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[RX do Tórax:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="603" width="100" height="17" uuid="e21c5229-d6de-4cc1-9aa5-eac7c098c9af"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exRX}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="620" width="100" height="17" uuid="1d81fa2f-132d-4cbf-b7d2-ec959e289056"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Acuidade Visual:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="620" width="100" height="17" uuid="dd2fe9ae-46c1-4dd4-ac0a-c74501e409aa"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exAcui}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="637" width="100" height="17" uuid="1655eaa0-50b9-4bac-ad70-d34d37537a01"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Coproparasitológico:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="637" width="100" height="17" uuid="6c825c7d-d36e-4597-9f3d-1180f6fbba5a"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exCopropar}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="654" width="100" height="17" uuid="4ef38af6-98f3-495c-81f2-c33f75dd84a6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Coprocultura:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="654" width="100" height="17" uuid="917a7c3e-0f2e-43e8-aedb-0270eb1ef4e8"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exCoprocult}))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="331" y="671" width="100" height="17" uuid="8eb05c89-ff9e-4d12-a582-29fbcdb6bf30"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[VDRL:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="671" width="100" height="17" uuid="ab1cb1ae-08e1-477c-a059-64189cad47de"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exVDRL}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="688" width="100" height="17" uuid="0c66716d-2b42-4e8d-b4dc-55b588316890"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exOutras1}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="705" width="100" height="17" uuid="f1cf7176-6cc6-408d-b6a6-773b6f280ab7"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exOutras2}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="431" y="722" width="100" height="17" uuid="5604e53e-ee71-45d1-99dd-d6f6958a2e26"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new SimpleDateFormat("dd/MM/yyyy").format($F{aso_exOutras3}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="688" width="100" height="17" uuid="1ff37a42-aa37-49b2-8046-32dcf2eaa8cc"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aso_exOutras1Texto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="705" width="100" height="17" uuid="e4b96e65-88df-4d0c-a25b-d84b1739eb13"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aso_exOutras2Texto}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="331" y="722" width="100" height="17" uuid="a435bd5c-0950-4476-b352-2bb793b70608"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aso_exOutras3Texto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="19" y="721" width="71" height="18" uuid="9f1402d3-b33f-4213-b07b-c9688ab37950"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Conclusão:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="745" width="71" height="20" uuid="0df68586-66e0-4d4a-9e1b-75b9d26beba2"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Restrições]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="89" y="722" width="228" height="17" uuid="69ce6e38-5b67-4d4a-86e4-3e484c5d5773"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aso_conclusao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="89" y="745" width="464" height="20" uuid="302613b4-e030-47a5-ab17-6b914b780f07"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aso_restricoes}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="280" y="232" width="100" height="14" uuid="628fa05b-89b0-4146-9e5e-407571a18152"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<text><![CDATA[Data do Exame]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="232" width="175" height="14" uuid="719ff486-0226-4b21-a3e7-a6cc85de37c3"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Data do Exame}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="317" y="52" width="95" height="16" uuid="02d3333e-5a29-4832-ab35-7555ffd0868d"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Número da ASO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="412" y="52" width="100" height="16" uuid="8ba6b8ef-5a28-475e-b512-4cf7582de06e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Número da ASO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
