@@ -1,3 +1,19 @@
+# Sistema novo (em construção)
+
+A pasta `backend/` e `frontend/` é a reconstrução. O código Swing na raiz permanece só como referência.
+
+```bash
+cp .env.example .env
+# edite MASTER_PASSWORD e JWT_SECRET
+docker compose up --build
+```
+
+Login em http://localhost:5173. API em http://localhost:8080. Sem `docker`: no backend, `mvn spring-boot:run` com as mesmas variáveis; no frontend, `npm run dev`.
+
+O usuário master só provisiona consultórios e usuários. Não lê exame.
+
+---
+
 # ProgramaAnamnese É um sistema que a parte de Engenharia de Software foi desenvolvida na faculdade com alguns colegas de sala, com os requisitos listados abaixo, porém com desenvolvimento feito sozinho por mim, pois o Cliente entrevistado é meu pai, e queria aplicar os conhecimentos que tive nesses 3 semestres de faculdade e alguns cursos online para ajudar o processo que ele tem hoje.
 
 

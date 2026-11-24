@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: anamnese
+      POSTGRES_USER: anamnese
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-anamnese}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U anamnese -d anamnese"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+  backend:
+    build: ./backend
+    environment:
+      DB_URL: jdbc:postgresql://db:5432/anamnese
+      DB_USER: anamnese
+      DB_PASSWORD: ${DB_PASSWORD:-anamnese}
+      JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET}
+      MASTER_USERNAME: ${MASTER_USERNAME:-master}
+      MASTER_PASSWORD: ${MASTER_PASSWORD:?defina MASTER_PASSWORD}
+      MASTER_NAME: ${MASTER_NAME:-Master}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+  frontend:
+    build: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+volumes:
+  pgdata:
