@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '../components/ui/button'
 import { Card, Field } from '../components/ui/field'
 import { Input, Select } from '../components/ui/input'
+import { digits, maskCpf } from '../components/masks'
 import { api, type Session } from '../session'
 
 const examTypes = [
@@ -41,7 +42,8 @@ export function ReceptionPage({ session }: { session: Session }) {
 
   async function search(event: FormEvent) {
     event.preventDefault()
-    const param = query.replace(/\D/g, '').length === 11 ? `cpf=${encodeURIComponent(query)}` : `name=${encodeURIComponent(query)}`
+    const cpf = digits(query)
+    const param = cpf.length === 11 ? `cpf=${encodeURIComponent(cpf)}` : `name=${encodeURIComponent(query)}`
     const found = await api(`/api/patients?${param}`, session.token)
     setPatients(found)
     setPatientId(found[0]?.id ?? '')
@@ -71,7 +73,7 @@ export function ReceptionPage({ session }: { session: Session }) {
             <Field label="Paciente">
               <Select required value={patientId} onChange={(e) => setPatientId(e.target.value)}>
                 <option value="">Selecione</option>
-                {patients.map((patient) => <option key={patient.id} value={patient.id}>{patient.fullName} — {patient.cpf}</option>)}
+                {patients.map((patient) => <option key={patient.id} value={patient.id}>{patient.fullName} — {maskCpf(patient.cpf)}</option>)}
               </Select>
             </Field>
             <Field label="Tipo de exame">

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/ui/button'
 import { Card, Field } from '../components/ui/field'
 import { Input, Select } from '../components/ui/input'
+import { maskCpf } from '../components/masks'
 import { api, type Session } from '../session'
 import { defaultExamGroups, formatDateBr, visibleGroups, type FormGroup } from './examForm'
 
@@ -110,7 +111,7 @@ export function ExamPage({ session }: { session: Session }) {
     <div className="grid gap-4">
       <Card title={exam.patientName}>
         <p className="text-sm text-slate-600">
-          {exam.examType} — {exam.companyName} — CPF {exam.cpf} — {exam.jobTitle} — nasc. {formatDateBr(exam.birthDate)}
+          {exam.examType} — {exam.companyName} — CPF {maskCpf(exam.cpf)} — {exam.jobTitle} — nasc. {formatDateBr(exam.birthDate)}
         </p>
       </Card>
       <section className="rounded-xl border border-slate-200 bg-white shadow-sm">

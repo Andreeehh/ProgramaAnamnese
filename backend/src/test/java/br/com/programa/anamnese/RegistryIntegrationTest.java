@@ -104,6 +104,47 @@ class RegistryIntegrationTest {
     }
 
     @Test
+    void maskedDocumentsAreStoredAsDigitsAndInvalidRgIsBadRequest() throws Exception {
+        String master = token("master", "master-secret");
+        String tenant = createTenant(master, "Mascara");
+        createUser(master, "sec-mascara", "SECRETARIA", tenant);
+        String secretary = token("sec-mascara", "senha-secretaria");
+
+        mockMvc.perform(post("/api/patients")
+                        .header("Authorization", "Bearer " + secretary)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"company":{"cnpj":"12.345.678/0001-95","name":"Clinica Mascara","address":"Rua 1","phone":"(14) 3333-4444","postalCode":"17340-000"},
+                                 "fullName":"Com Mascara","birthDate":"1990-01-02","sex":"F","maritalStatus":"Casado",
+                                 "cpf":"390.533.447-05","rg":"48.445.558-8","address":"Rua 2","city":"Iacanga",
+                                 "jobTitle":"Tec","birthplace":"Brasileiro","phone":"(14) 98888-7777","postalCode":"17340-000"}
+                                """))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.cpf").value("39053344705"))
+                .andExpect(jsonPath("$.rg").value("484455588"))
+                .andExpect(jsonPath("$.phone").value("14988887777"))
+                .andExpect(jsonPath("$.postalCode").value("17340000"));
+
+        mockMvc.perform(get("/api/companies").param("q", "Mascara")
+                        .header("Authorization", "Bearer " + secretary))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].cnpj").value("12345678000195"))
+                .andExpect(jsonPath("$[0].phone").value("1433334444"))
+                .andExpect(jsonPath("$[0].postalCode").value("17340000"));
+
+        mockMvc.perform(post("/api/patients")
+                        .header("Authorization", "Bearer " + secretary)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"company":{"name":"Outra","address":"Rua 3"},
+                                 "fullName":"Rg Longo","birthDate":"1990-01-02","sex":"M","maritalStatus":"Solteiro",
+                                 "cpf":"15350946056","rg":"123456789012","address":"Rua 3","city":"Iacanga",
+                                 "jobTitle":"Tec","birthplace":"Brasileiro"}
+                                """))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void secretaryArrivalIsCalledInOrder() throws Exception {
         String master = token("master", "master-secret");
         String tenant = createTenant(master, "Fila");

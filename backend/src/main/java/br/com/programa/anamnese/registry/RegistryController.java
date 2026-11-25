@@ -80,7 +80,13 @@ public class RegistryController {
         return PatientResponse.from(registry.updatePatient(actor.tenantId(tenant), id, request.toWrite()));
     }
 
-    public record CompanyRequest(@Size(max = 20) String cnpj, @NotBlank @Size(max = 80) String name, @NotBlank @Size(max = 150) String address, String phone, String postalCode) {}
+    public record CompanyRequest(@Size(max = 20) String cnpj, @NotBlank @Size(max = 80) String name, @NotBlank @Size(max = 150) String address, String phone, String postalCode) {
+        public CompanyRequest {
+            cnpj = onlyDigits(cnpj);
+            phone = onlyDigits(phone);
+            postalCode = onlyDigits(postalCode);
+        }
+    }
 
     public record CompanyResponse(UUID id, String cnpj, String name, String address, String phone, String postalCode) {
         static CompanyResponse from(Company company) {
@@ -106,6 +112,13 @@ public class RegistryController {
             @NotBlank @Size(max = 40) String birthplace,
             String phone,
             String postalCode) {
+        public PatientRequest {
+            cpf = onlyDigits(cpf);
+            rg = onlyDigits(rg);
+            phone = onlyDigits(phone);
+            postalCode = onlyDigits(postalCode);
+        }
+
         RegistryService.PatientWrite toWrite() {
             if (!"M".equals(sex) && !"F".equals(sex)) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Sexo inválido");
@@ -125,5 +138,9 @@ public class RegistryController {
                     patient.getAddress(), patient.getCity(), patient.getJobTitle(), patient.getFatherName(), patient.getMotherName(),
                     patient.getBirthplace(), patient.getPhone(), patient.getPostalCode());
         }
+    }
+
+    private static String onlyDigits(String value) {
+        return value == null ? null : value.replaceAll("\\D", "");
     }
 }

@@ -3,11 +3,11 @@ import { Button } from '../components/ui/button'
 import { Card, Field } from '../components/ui/field'
 import { Input, Select } from '../components/ui/input'
 import { Loading } from '../components/Loading'
-import { lookupCep, maskCep, maskCnpj, maskCpf, maskPhone, maskRg } from '../components/masks'
+import { digits, lookupCep, maskCep, maskCnpj, maskCpf, maskPhone, maskRg } from '../components/masks'
 import { api, type Session } from '../session'
 
 type Company = { id: string; name: string }
-type Patient = { id: string; fullName: string; cpf: string; jobTitle: string }
+type Patient = { id: string; fullName: string; cpf: string; rg: string; jobTitle: string }
 
 const empty = {
   newCompany: false,
@@ -42,7 +42,8 @@ export function PatientsPage({ session }: { session: Session }) {
   const [loading, setLoading] = useState(false)
 
   async function load(name = '') {
-    const param = name.replace(/\D/g, '').length === 11 ? `cpf=${encodeURIComponent(name)}` : `name=${encodeURIComponent(name)}`
+    const cpf = digits(name)
+    const param = cpf.length === 11 ? `cpf=${encodeURIComponent(cpf)}` : `name=${encodeURIComponent(name)}`
     const [people, clinics] = await Promise.all([
       api(`/api/patients?${param}`, session.token),
       api('/api/companies', session.token),
@@ -64,19 +65,19 @@ export function PatientsPage({ session }: { session: Session }) {
       sex: form.sex,
       skinColor: form.skinColor,
       maritalStatus: form.maritalStatus,
-      cpf: form.cpf,
-      rg: form.rg,
+      cpf: digits(form.cpf),
+      rg: digits(form.rg),
       address: form.address,
       city: form.city,
       jobTitle: form.jobTitle,
       fatherName: form.fatherName,
       motherName: form.motherName,
       birthplace: form.birthplace,
-      phone: form.phone,
-      postalCode: form.postalCode,
+      phone: digits(form.phone),
+      postalCode: digits(form.postalCode),
     }
     const body = form.newCompany
-      ? { company: { cnpj: form.companyCnpj, name: form.companyName, address: form.companyAddress }, ...fields }
+      ? { company: { cnpj: digits(form.companyCnpj), name: form.companyName, address: form.companyAddress }, ...fields }
       : { companyId: form.companyId, ...fields }
     try {
       await api('/api/patients', session.token, { method: 'POST', body: JSON.stringify(body) })
@@ -115,7 +116,7 @@ export function PatientsPage({ session }: { session: Session }) {
           {patients.map((patient) => (
             <li key={patient.id} className="py-2 text-sm">
               <strong>{patient.fullName}</strong>
-              <span className="text-slate-500"> — CPF {patient.cpf} — {patient.jobTitle}</span>
+              <span className="text-slate-500"> — CPF {maskCpf(patient.cpf)} — RG {maskRg(patient.rg)} — {patient.jobTitle}</span>
             </li>
           ))}
         </ul>

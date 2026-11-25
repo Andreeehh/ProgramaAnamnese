@@ -3,7 +3,7 @@ import { Button } from '../components/ui/button'
 import { Card, Field } from '../components/ui/field'
 import { Input } from '../components/ui/input'
 import { Loading } from '../components/Loading'
-import { lookupCep, maskCep, maskCnpj, maskPhone } from '../components/masks'
+import { digits, lookupCep, maskCep, maskCnpj, maskPhone } from '../components/masks'
 import { api, type Session } from '../session'
 
 type Company = { id: string; cnpj: string; name: string; address: string; phone?: string; postalCode?: string }
@@ -29,7 +29,16 @@ export function CompaniesPage({ session }: { session: Session }) {
     setMessage('')
     try {
       const address = form.city && !form.address.includes(form.city) ? `${form.address} - ${form.city}` : form.address
-      await api('/api/companies', session.token, { method: 'POST', body: JSON.stringify({ ...form, address }) })
+      await api('/api/companies', session.token, {
+        method: 'POST',
+        body: JSON.stringify({
+          cnpj: digits(form.cnpj),
+          name: form.name,
+          address,
+          phone: digits(form.phone),
+          postalCode: digits(form.postalCode),
+        }),
+      })
       setForm({ cnpj: '', name: '', address: '', phone: '', postalCode: '', city: '' })
       setMessage('Empresa gravada.')
       await load('')
@@ -66,7 +75,7 @@ export function CompaniesPage({ session }: { session: Session }) {
           {items.map((item) => (
             <li key={item.id} className="py-2 text-sm">
               <strong>{item.name}</strong>
-              <span className="text-slate-500"> — {item.cnpj || 'sem CNPJ'} — {item.address}</span>
+              <span className="text-slate-500"> — {item.cnpj ? maskCnpj(item.cnpj) : 'sem CNPJ'} — {item.address}</span>
             </li>
           ))}
         </ul>
