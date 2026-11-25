@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: anamnese
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/anamnese}
+    username: ${DB_USER:anamnese}
+    password: ${DB_PASSWORD:anamnese}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate.jdbc.time_zone: UTC
+  flyway:
+    enabled: true
+
+server:
+  port: ${PORT:${SERVER_PORT:8080}}
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-binding-errors: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+app:
+  security:
+    jwt-secret: ${JWT_SECRET:dev-only-change-this-secret-key-32}
+    jwt-ttl-minutes: ${JWT_TTL_MINUTES:720}
+  master:
+    username: ${MASTER_USERNAME:master}
+    password: ${MASTER_PASSWORD:}
+    name: ${MASTER_NAME:Master}
