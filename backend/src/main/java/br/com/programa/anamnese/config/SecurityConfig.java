@@ -3,7 +3,9 @@ package br.com.programa.anamnese.config;
 import br.com.programa.anamnese.security.JwtAuthFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -23,10 +25,11 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
+    SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter,
+            @Value("${CORS_ALLOWED_ORIGINS:}") String corsOrigins) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .cors(cors -> cors.configurationSource(corsConfigurationSource(corsOrigins)))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .anonymous(AbstractHttpConfigurer::disable)
                 .exceptionHandling(errors -> errors
@@ -58,14 +61,29 @@ public class SecurityConfig {
     }
 
     @Bean
+    ApplicationRunner rejectDefaultJwtOutsideLocal(
+            @Value("${CORS_ALLOWED_ORIGINS:}") String corsOrigins,
+            @Value("${JWT_SECRET:dev-only-change-this-secret-key-32}") String jwtSecret) {
+        return args -> {
+            if (!corsOrigins.isBlank() && jwtSecret.startsWith("dev-only-change-this")) {
+                throw new IllegalStateException("Defina JWT_SECRET antes de publicar.");
+            }
+        };
+    }
+
+    @Bean
     PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    CorsConfigurationSource corsConfigurationSource() {
+    CorsConfigurationSource corsConfigurationSource(@Value("${CORS_ALLOWED_ORIGINS:}") String configured) {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOriginPatterns(List.of("http://localhost:*", "http://127.0.0.1:*"));
+        if (configured.isBlank()) {
+            configuration.setAllowedOriginPatterns(List.of("http://localhost:*", "http://127.0.0.1:*"));
+        } else {
+            configuration.setAllowedOrigins(List.of(configured.split("\\s*,\\s*")));
+        }
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);

@@ -16,7 +16,7 @@ create table medical_exam (
     company_name varchar(80) not null,
     exam_type varchar(40) not null,
     exam_date date not null,
-    answers clob not null,
+    answers text not null,
     fit varchar(10),
     author_id uuid not null references app_user (id),
     created_at timestamp not null,

@@ -3,7 +3,6 @@ package br.com.programa.anamnese.exam;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -42,8 +41,7 @@ public class MedicalExam {
     private String examType;
     @Column(name = "exam_date", nullable = false)
     private LocalDate examDate;
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "text")
     private String answers;
     @Column(length = 10)
     private String fit;
